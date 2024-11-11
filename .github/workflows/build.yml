@@ -19,17 +19,20 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.10.0' # Specify the exact version here
+          flutter-version: '3.10.0' # Specify the exact version
 
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          cd lpmt
+          flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: |
+          cd lpmt
+          flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-
+          path: lpmt/build/app/outputs/flutter-apk/app-release.apk
